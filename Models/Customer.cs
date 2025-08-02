@@ -15,5 +15,7 @@ namespace GestaoEstoque.Models
         public string State { get; set; }
         public string Cep { get; set; }
         public DateTime DateRegistration { get; set; }
+
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

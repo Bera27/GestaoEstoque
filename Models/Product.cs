@@ -12,5 +12,8 @@ namespace GestaoEstoque.Models
         public decimal PricePurchase { get; set; }
         public decimal PriceSale { get; set; }
         public string Description { get; set; }
+
+        public ICollection<OrderItens> OrderItens { get; set; } = new List<OrderItens>();
+        public ICollection<Stock> Stocks { get; set; } = new List<Stock>();
     }
 }
