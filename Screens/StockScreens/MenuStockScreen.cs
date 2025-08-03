@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GestaoEstoque.Screens.StockScreens;
 
 namespace GestaoEstoque.Screens
 {
@@ -22,7 +23,9 @@ namespace GestaoEstoque.Screens
 
             switch (option)
             {
-                
+                case 1:
+                    CreateProductScreen.Load();
+                    break;
                 default: Program.Load(); break;
             }
         }

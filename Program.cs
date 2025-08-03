@@ -7,7 +7,7 @@ namespace GestaoEstoque
     {
         static void Main(String[] args)
         {
-
+            Load();
         }
 
         public static void Load()
