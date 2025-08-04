@@ -33,8 +33,8 @@ namespace GestaoEstoque.Data.Mappings
 
             // Relacionamentos
             builder.HasOne(x => x.Product)
-                .WithMany(x => x.Stocks)
-                .HasForeignKey(x => x.ProductId)
+                .WithOne(x => x.Stock)
+                .HasForeignKey<Stock>(x => x.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -21,6 +21,7 @@ namespace GestaoEstoque
             Console.WriteLine("3 - Gestão de Pedidos");
             Console.WriteLine("4 - Relatórios");
             Console.WriteLine("5 - Sair");
+            Console.WriteLine();
             int option = int.Parse(Console.ReadLine());
 
             switch (option)
@@ -35,6 +36,10 @@ namespace GestaoEstoque
 
                 case 3:
                     MenuOrderScreen.Load();
+                    break;
+
+                case 5:
+                    Environment.Exit(0);
                     break;
                 
                 default: Load(); break;

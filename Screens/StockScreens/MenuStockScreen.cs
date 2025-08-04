@@ -19,6 +19,7 @@ namespace GestaoEstoque.Screens
             Console.WriteLine("4 - Editar produto");
             Console.WriteLine("5 - Excluir produto");
             Console.WriteLine("6 - Voltar");
+            Console.WriteLine();
             int option = int.Parse(Console.ReadLine());
 
             switch (option)
@@ -26,6 +27,23 @@ namespace GestaoEstoque.Screens
                 case 1:
                     CreateProductScreen.Load();
                     break;
+
+                case 2:
+                    GetAllProductScreen.Load();
+                    break;
+
+                case 3:
+                    GetProductScreen.Load();
+                    break;
+
+                case 4:
+                    UpdateProductScreen.Load();
+                    break;
+
+                case 5:
+                    DeleteProductScreen.Load();
+                    break;
+                    
                 default: Program.Load(); break;
             }
         }
