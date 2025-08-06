@@ -19,6 +19,9 @@ namespace GestaoEstoque.Screens.StockScreens
             Console.Write("ID do produto: ");
             int id = int.Parse(Console.ReadLine());
 
+            Get(id);
+            Console.Clear();
+
             Console.Write("Novo nome: ");
             string name = Console.ReadLine();
 
@@ -39,6 +42,29 @@ namespace GestaoEstoque.Screens.StockScreens
             MenuStockScreen.Load();
         }
 
+
+        public static void Get(int id)
+        {
+            using var context = DbContextFactory.CreateDbContext();
+            var findProd = context.Products
+                .Include(x => x.Stock)
+                .FirstOrDefault(x => x.Id == id);
+
+            if (findProd == null)
+            {
+                Console.WriteLine($"Não tem nenhum produto com esse ID: '{id}' ");
+                Console.ReadKey();
+                MenuStockScreen.Load();
+            }
+
+            Console.WriteLine($"Nome: {findProd.Name} | Preço de compra: {findProd.PricePurchase:C} | Preço de venda: {findProd.PriceSale:C} | Qtd: {findProd.Stock.Amount} | Descrição: {findProd.Description} | Total: {findProd.PricePurchase * findProd.Stock.Amount:C}");
+            Console.WriteLine("Esse é o pruduto desejado? S/N");
+            string option = Console.ReadLine().Substring(0, 1).ToUpper();
+
+            if (option == "N")
+                return;
+            
+        }
         public static void Update(int id, string name, decimal pricePurchase, decimal priceSale, string description, int amount)
         {
             using var context = DbContextFactory.CreateDbContext();
@@ -49,28 +75,15 @@ namespace GestaoEstoque.Screens.StockScreens
                 .Include(x => x.Stock)
                 .FirstOrDefault(x => x.Id == id);
 
-                if (findProd == null)
-                {
-                    Console.WriteLine($"Não tem nenhum produto com esse ID: '{id}' ");
-                    Console.ReadKey();
-                    MenuStockScreen.Load();
-                }
+                findProd.Name = name;
+                findProd.PricePurchase = pricePurchase;
+                findProd.PriceSale = priceSale;
+                findProd.Description = description;
+                findProd.Stock.Amount = amount;
 
-                Console.WriteLine($"Nome: {findProd.Name} | Preço de compra: {findProd.PricePurchase:C} | Preço de venda: {findProd.PriceSale:C} | Qtd: {findProd.Stock.Amount} | Descrição: {findProd.Description} | Total: {findProd.PricePurchase * findProd.Stock.Amount:C}");
-                Console.WriteLine("Esse é o pruduto desejado? S/N");
-                string option = Console.ReadLine().Substring(0, 1).ToUpper();
+                context.SaveChanges();
+                Console.WriteLine("Produto atualizado com sucesso");
 
-                if (option == "S")
-                {
-                    findProd.Name = name;
-                    findProd.PricePurchase = pricePurchase;
-                    findProd.PriceSale = priceSale;
-                    findProd.Description = description;
-                    findProd.Stock.Amount = amount;
-
-                    context.SaveChanges();
-                    Console.WriteLine("Produto atualizado com sucesso"); 
-                }
             }
             catch (Exception ex)
             {

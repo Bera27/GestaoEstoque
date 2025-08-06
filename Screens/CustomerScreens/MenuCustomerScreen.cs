@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GestaoEstoque.Screens.CustomerScreens;
 
 namespace GestaoEstoque.Screens
 {
@@ -18,10 +19,30 @@ namespace GestaoEstoque.Screens
             Console.WriteLine("4 - Editar cliente");
             Console.WriteLine("5 - Excluir dados de cliente");
             Console.WriteLine("6 - Voltar");
+            Console.WriteLine();
             int option = int.Parse(Console.ReadLine());
 
             switch (option)
             {
+                case 1:
+                    CreateCustomerScreen.Load();
+                    break;
+
+                case 2:
+                    GetCustomerScreen.Load();
+                    break;
+
+                case 3:
+                    GetAllCustomerScreen.Load();
+                    break;
+
+                case 4:
+                    UpdateCustomerScreen.Load();
+                    break;
+                
+                case 5:
+                    DeleteCustomerScreen.Load();
+                    break;
                 
                 default: Program.Load(); break;
             }

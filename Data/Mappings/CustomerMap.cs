@@ -44,6 +44,12 @@ namespace GestaoEstoque.Data.Mappings
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(255);
 
+                builder.Property(x => x.City)
+                .IsRequired()
+                .HasColumnName("City")
+                .HasColumnType("NVARCHAR")
+                .HasMaxLength(50);
+
             builder.Property(x => x.State)
                 .IsRequired()
                 .HasColumnName("State")
