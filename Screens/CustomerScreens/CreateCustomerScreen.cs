@@ -46,7 +46,7 @@ namespace GestaoEstoque.Screens.CustomerScreens
                 Cep = cep
             });
             Console.ReadKey();
-            MenuCustomerScreen.Load();
+            Program.Load();
         }
 
         public static void Create(Customer customer)
